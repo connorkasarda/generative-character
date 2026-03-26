@@ -1,15 +1,15 @@
 [project]
-name = "template-project"
+name = "generative-character"
 version = "0.1.0"
-description = "Template Python project"
-authors = [{ name="Project Name" }]
+description = "Generative NPC Dialogue Generation Project"
+authors = [{ name="Connor Logan Kasarda" }]
 requires-python = ">=3.10"
 dependencies = [
     "pytest"
 ]
 
 [project.scripts]
-template-project = "template_package.main:main"
+generative-character = "generative_character.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -18,10 +18,10 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.black]
-line-length = 88
+line-length = 80
 
 [tool.ruff]
-line-length = 88
+line-length = 80
 lint.select = ["E", "F", "W", "I"]
 
 [tool.pytest.ini_options]
