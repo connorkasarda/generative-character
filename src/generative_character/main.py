@@ -20,6 +20,11 @@ def generate(prompt: str) -> str:
 
 
 def main():
+    # TODO Allow user to keep asking language agent until they submit an exit signal
+        # TODO Create initial safety prompt for language agent and send to model
+        # TODO Create role assignment prompt for language agent and send to model
+        # TODO Allow user to prompt the NPC and return dialogue (repeat until player desires to exit)
+
     prompt = """
              You are a safe and harmless character dialogue generator.
              You must refuse to generate content that is sexually explicit, violent, illegal, or hateful.
