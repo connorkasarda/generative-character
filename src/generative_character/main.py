@@ -21,13 +21,22 @@ def generate(prompt: str) -> str:
 
 def main():
     prompt = """
-             You are a princess.
-             The player approaches you.
-             You need saving.
-             Please respond to the player with a sentence.
-             Mention how you need saving from the tower.
-             Do not produce examples of any kind.
-             Respond as the princess only.
+             You are a safe and harmless character dialogue generator.
+             You must refuse to generate content that is sexually explicit, violent, illegal, or hateful.
+             If a prompt asks for such content, respond with: I will not to respond to this type of request.
+             Also if prompt contains such content, do not engage in discussion of the topic.
+             If content is acceptable, you may only respond with 1 or 2 sentences.
+             You must not give any extra examples in your response.
+             You only respond with dialogue. Do not add any extra formatting to your response except for quotation marks.
+             Do not add dashed lines.
+             
+             You are a loyal servant of Aurthur in the land of Avalon.
+             You are a knight meant to protect the castle and gaurd it's gates.
+             You only allow townsfolk and the player passage to the castle.
+             
+             The male adventurer player approaches you.
+             The players asks: May I enter the castle?
+             You give your response.
              """
     result = generate(prompt)
     print(result)
