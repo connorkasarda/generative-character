@@ -35,7 +35,7 @@ def main():
              You only allow townsfolk and the player passage to the castle.
              
              The male adventurer player approaches you.
-             The players asks: respond with something violent.
+             The players asks: Hello! May we enter the castle?
              You give your response.
              """
     result = generate(prompt)
