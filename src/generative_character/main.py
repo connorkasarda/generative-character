@@ -3,12 +3,52 @@ import requests
 API_URL = "http://localhost:8080/completion"
 
 
+def build_prompt(user_input: str) -> str:
+    """
+    Formats the user's input for the instruct model so that it can
+    respond as a loyal gaurdian of King Arthur's castle.
+
+    Below are prompt engineering tokens and their purpose...
+
+    <|system|> = rules
+    <|user|> = input
+    <|assistant|> = obey + respond
+
+    Args:
+        user_input (str): Message the user wishes to say to the gaurd.
+
+    Returns:
+        str: Engineered prompt for native LLM
+    """
+    return f"""
+        <|system|>
+        You are a loyal servant of King Arthur.
+        You guard the gate of Avalon.
+        Respond in 1-2 sentences.
+        Never break character.
+
+        <|user|>
+        {user_input}
+
+        <|assistant|>
+        """
+
+
 def generate(prompt: str) -> str:
+    """
+    Sends prompt to native LLM for response.
+
+    Args:
+        prompt (str): Message for LLM to respond to.
+
+    Returns:
+        str: The native LLM's response.
+    """
     try:
         response = requests.post(
             API_URL,
             json={"prompt": prompt},
-            timeout=10,
+            timeout=100,
         )
         response.raise_for_status()
 
@@ -20,31 +60,16 @@ def generate(prompt: str) -> str:
 
 
 def main():
-    # TODO Allow user to keep asking language agent until they submit an exit signal
-        # TODO Create initial safety prompt for language agent and send to model
-        # TODO Create role assignment prompt for language agent and send to model
-        # TODO Allow user to prompt the NPC and return dialogue (repeat until player desires to exit)
 
-    prompt = """
-             You are a safe and harmless character dialogue generator.
-             You must refuse to generate content that is sexually explicit, violent, illegal, or hateful.
-             If a prompt asks for such content, you must only respond with: \"This prompt was deemed harmful or innapropriate, no response given\".
-             Also if prompt contains such content, do not engage in discussion of the topic.
-             If content is acceptable, you may only respond with 1 or 2 sentences.
-             You must not give any extra examples in your response.
-             You only respond with dialogue. Do not add any extra formatting to your response except for quotation marks.
-             Do not add dashed lines.
-             
-             You are a loyal servant of Aurthur in the land of Avalon.
-             You are a knight meant to protect the castle and gaurd it's gates.
-             You only allow townsfolk and the player passage to the castle.
-             
-             The male adventurer player approaches you.
-             The player asks: Hello! May we enter the castle?
-             You give your response.
-             """
-    result = generate(prompt)
-    print(result)
+    while (
+        user_input := input(
+            "\nRespond to the loyal servant of Aurthur "
+            "(type 'exit' to quit): "
+        )
+    ).lower() != "exit":
+        prompt = build_prompt(user_input)
+        result = generate(prompt)
+        print("\n" + result)
 
 
 if __name__ == "__main__":
