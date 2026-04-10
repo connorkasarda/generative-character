@@ -1,37 +1,16 @@
 import requests
 
+from .prompt import build_instruct_prompt
+
 API_URL = "http://localhost:8080/completion"
 
 
-def build_prompt(user_input: str) -> str:
-    """
-    Formats the user's input for the instruct model so that it can
-    respond as a loyal gaurdian of King Arthur's castle.
-
-    Below are prompt engineering tokens and their purpose...
-
-    <|system|> = rules
-    <|user|> = input
-    <|assistant|> = obey + respond
-
-    Args:
-        user_input (str): Message the user wishes to say to the gaurd.
-
-    Returns:
-        str: Engineered prompt for native LLM
-    """
-    return f"""
-        <|system|>
-        You are a loyal servant of King Arthur.
-        You guard the gate of Avalon.
-        Respond in 1-2 sentences.
-        Never break character.
-
-        <|user|>
-        {user_input}
-
-        <|assistant|>
-        """
+gaurd_rules = (
+    "You are a loyal servant of King Arthur."
+    "You guard the gate of Avalon."
+    "Respond in 1-2 sentences."
+    "Never break character."
+)
 
 
 def generate(prompt: str) -> str:
@@ -60,14 +39,16 @@ def generate(prompt: str) -> str:
 
 
 def main():
-
+    """
+    Generative character program entrypoint run
+    """
     while (
         user_input := input(
             "\nRespond to the loyal servant of Aurthur "
-            "(type 'exit' to quit): "
+            "(type '/exit' to quit): "
         )
-    ).lower() != "exit":
-        prompt = build_prompt(user_input)
+    ).lower() != "/exit":
+        prompt = build_instruct_prompt(gaurd_rules, user_input)
         result = generate(prompt)
         print("\n" + result)
 
