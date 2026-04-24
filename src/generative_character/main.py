@@ -12,8 +12,12 @@ gaurd_rules = (
     "Never break character."
 )
 
+poingancy_rater_rules = (
+    
+)
 
-def generate(prompt: str) -> str:
+
+def generate(prompt: str, grammar: str | None = None) -> str:
     """
     Sends prompt to native LLM for response.
 
@@ -24,9 +28,16 @@ def generate(prompt: str) -> str:
         str: The native LLM's response.
     """
     try:
+        payload = {
+            "prompt": prompt,
+        }
+
+        if grammar is not None:
+            payload["grammar"] = grammar
+
         response = requests.post(
             API_URL,
-            json={"prompt": prompt},
+            json=payload,
             timeout=100,
         )
         response.raise_for_status()
@@ -36,6 +47,15 @@ def generate(prompt: str) -> str:
 
     except requests.exceptions.RequestException as e:
         return f"[Error communicating with LLM: {e}]"
+    
+
+def get_model_response(rules: str, input: str) -> str:
+    """
+    
+    """
+    prompt = build_instruct_prompt(rules, input)
+    result = generate(prompt)
+    return result
 
 
 def main():
@@ -48,9 +68,8 @@ def main():
             "(type '/exit' to quit): "
         )
     ).lower() != "/exit":
-        prompt = build_instruct_prompt(gaurd_rules, user_input)
-        result = generate(prompt)
-        print("\n" + result)
+        gaurd_response = get_model_response(gaurd_rules, user_input)
+        print("\nGaurd Response: " + gaurd_response)
 
 
 if __name__ == "__main__":
