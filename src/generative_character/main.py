@@ -12,9 +12,9 @@ gaurd_rules = (
     "Never break character."
 )
 
-poingancy_rater_rules = (
-    
-)
+poingancy_rater_rules = ()
+
+# TODO Define a GBNF that restricts the LLM output for poignancy rating
 
 
 def generate(prompt: str, grammar: str | None = None) -> str:
@@ -47,12 +47,10 @@ def generate(prompt: str, grammar: str | None = None) -> str:
 
     except requests.exceptions.RequestException as e:
         return f"[Error communicating with LLM: {e}]"
-    
+
 
 def get_model_response(rules: str, input: str) -> str:
-    """
-    
-    """
+    """ """
     prompt = build_instruct_prompt(rules, input)
     result = generate(prompt)
     return result
