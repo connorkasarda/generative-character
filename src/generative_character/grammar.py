@@ -3,6 +3,7 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).resolve().parent.parent.parent
 GRAMMARS_DIR = PROJECT_DIR / "grammars"
 
+
 def load_grammar(name: str) -> str:
     """
     Loads grammar rules from file to memory

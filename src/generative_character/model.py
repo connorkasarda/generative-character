@@ -4,6 +4,7 @@ from .prompt import build_instruct_prompt
 
 LLM_API_URL = "http://localhost:8080/completion"
 
+
 def get_model_http_response(prompt: str, grammar: str | None = None) -> str:
     """
     Sends prompt to native LLM for response.
@@ -37,7 +38,9 @@ def get_model_http_response(prompt: str, grammar: str | None = None) -> str:
         return f"[Error communicating with LLM: {e}]"
 
 
-def generate_text(rules: str, user_input: str, grammar: str | None = None) -> str:
+def generate_text(
+    rules: str, user_input: str, grammar: str | None = None
+) -> str:
     """
     Retrieves model response
 
@@ -52,4 +55,3 @@ def generate_text(rules: str, user_input: str, grammar: str | None = None) -> st
     prompt = build_instruct_prompt(rules, user_input)
     result = get_model_http_response(prompt, grammar)
     return result
-

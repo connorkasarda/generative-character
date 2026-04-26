@@ -4,7 +4,7 @@ def build_instruct_prompt(rules: str, user_input: str) -> str:
 
     Args:
         rules (str): Instructions for the language model to obey in response.
-        user_input (str): Message the user wishes to say to the generative character.
+        user_input (str): Message the user prompts generative character with.
 
     Returns:
         str: Prompt properly formatted for the native instruct model

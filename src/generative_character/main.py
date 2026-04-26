@@ -1,5 +1,5 @@
-from .model import generate_text
 from .grammar import load_grammar
+from .model import generate_text
 
 gaurd_rules = (
     "You are a loyal servant of King Arthur."
@@ -14,6 +14,7 @@ poignancy_rules = (
     "You will only return a number between 1 and 9 for poignancy rating."
 )
 
+
 def main():
     """
     Generative character program entrypoint run
@@ -26,7 +27,9 @@ def main():
             "(type '/exit' to quit): "
         )
     ).lower() != "/exit":
-        poignancy_response = generate_text(poignancy_rules, user_input, poignancy_grammar)
+        poignancy_response = generate_text(
+            poignancy_rules, user_input, poignancy_grammar
+        )
         print("\nPoignancy Rating: " + poignancy_response)
 
         gaurd_response = generate_text(gaurd_rules, user_input)
@@ -35,4 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
