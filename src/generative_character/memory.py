@@ -1,5 +1,6 @@
 import time
 
+
 class Memory:
     """
     Encapsulates a recorded unit of the character's experiences
