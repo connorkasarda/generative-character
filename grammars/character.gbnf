@@ -1,0 +1,12 @@
+root ::= object
+
+object ::= "{" ws "\"response\"" ws ":" ws string ws "," ws "\"poignancy\"" ws ":" ws number ws "," ws "\"description\"" ws ":" ws string ws "}"
+
+string ::= "\"" chars "\""
+chars ::= "" | char chars
+char ::= [^"\\] | "\\" ["\\/bfnrt]
+
+number ::= "10" | digit
+digit ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+ws ::= "" | " " ws

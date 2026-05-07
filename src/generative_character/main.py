@@ -1,10 +1,17 @@
 from .character import Character
 
 gaurd_rules = (
-    "You are a loyal servant of King Arthur."
-    "You guard the gate of Avalon."
-    "Respond in 1-2 sentences as your character only."
-    "Never break character."
+    "You are a royal guard."
+    "Respond in character,"
+    "then rate the poignancy of the interaction from 1-10,"
+    "and finally describe the interaction between "
+    "the player (user) and the character (you)."
+    "Character response should be 1-2 sentences."
+    "For poignancy, 1 is unimportant and 10 is very important."
+    "Description should regard user input"
+    "and character response and be 1-2 sentences."
+    "Return JSON in this format:"
+    '{ "response": string, "poignancy": number, "description": string }'
 )
 
 
@@ -22,7 +29,7 @@ def main():
         )
     ).lower() != "/exit":
         gaurd_response = gaurd_character.interact(user_input)
-        print('\n"' + gaurd_response + '" - Guard')
+        print(f'\n"{gaurd_response}" - Gaurd')
 
 
 if __name__ == "__main__":
