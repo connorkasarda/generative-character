@@ -15,7 +15,7 @@ rules = (
     "Do NOT include any extra text outside JSON.\n\n"
     "If you break JSON format, your output is invalid.\n\n"
     "JSON format:\n"
-    '{ "response": string, "poignancy": integer, "description": string }\n\n'
+    '{ "response": \"...\", "poignancy": integer, "description": \"...\" }\n\n'
     "FIELD DEFINITIONS:\n"
     "- response: 1–2 sentences spoken by the character to the player.\n"
     "- poignancy: integer from 1–10 representing importance of the"
@@ -23,10 +23,10 @@ rules = (
     "- description: 1 sentence memory of what happened, written in"
     "third-person past tense.\n\n"
     "RESPONSE RULES:\n"
-    "- response must ONLY contain spoken dialogue to the player.\n"
-    "- It must NOT contain actions, narration, or metadata.\n\n"
+    "- response must ONLY contain what character says to the player.\n"
+    "- It must NOT contain actions, narration, or metadata.\n"
     "DESCRIPTION RULES:\n"
-    "- Describe only observable events and intent.\n"
+    "- Describe only observable events and intent in the present.\n"
     "- Do NOT include dialogue quotes.\n"
     "- Write as a memory the character would retain.\n"
     "- Keep it concise and factual.\n\n"
