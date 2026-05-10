@@ -1,5 +1,7 @@
 import time
+
 import numpy as np
+
 
 class Memory:
     """
@@ -7,13 +9,13 @@ class Memory:
     """
 
     def __init__(
-            self,
-            id: int,
-            player_message: str,
-            character_response: str,
-            description: str,
-            embedding: np.ndarray,
-            poignancy_rating: int
+        self,
+        id: int,
+        player_message: str,
+        character_response: str,
+        description: str,
+        embedding: np.ndarray,
+        poignancy_rating: int,
     ):
         """
         Args:

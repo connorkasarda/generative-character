@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+
 from sentence_transformers import SentenceTransformer
 
 from .grammar import load_grammar
@@ -9,32 +10,29 @@ from .model import generate_text
 rules = (
     "You are a gate guard for the kingdom of Avalon.\n"
     "You respond in character to the player's words.\n\n"
-
     "OUTPUT FORMAT RULES:\n"
     "You MUST return ONLY valid JSON.\n"
     "Do NOT include any extra text outside JSON.\n\n"
     "If you break JSON format, your output is invalid.\n\n"
-
     "JSON format:\n"
     '{ "response": string, "poignancy": integer, "description": string }\n\n'
-
     "FIELD DEFINITIONS:\n"
     "- response: 1–2 sentences spoken by the character to the player.\n"
-    "- poignancy: integer from 1–10 representing importance of the interaction.\n"
-    "- description: 1 sentence memory of what happened, written in third-person past tense.\n\n"
-
+    "- poignancy: integer from 1–10 representing importance of the"
+    "interaction.\n"
+    "- description: 1 sentence memory of what happened, written in"
+    "third-person past tense.\n\n"
     "RESPONSE RULES:\n"
     "- response must ONLY contain spoken dialogue to the player.\n"
     "- It must NOT contain actions, narration, or metadata.\n\n"
-
     "DESCRIPTION RULES:\n"
     "- Describe only observable events and intent.\n"
     "- Do NOT include dialogue quotes.\n"
     "- Write as a memory the character would retain.\n"
     "- Keep it concise and factual.\n\n"
-
     "EXAMPLE DESCRIPTION:\n"
-    "A traveler requested access to the castle and was informed that permission is required.\n"
+    "A traveler requested access to the castle and was informed that"
+    "permission is required.\n"
 )
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent.parent
@@ -42,6 +40,7 @@ MODEL_PATH = PROJECT_DIR / "models" / "all-MiniLM-L6-v2"
 
 embedding_model = SentenceTransformer(str(MODEL_PATH))
 grammar = load_grammar("character")
+
 
 def main():
     """
@@ -71,15 +70,15 @@ def main():
                 ai_text,
                 event_description,
                 event_embedding,
-                poignancy_score
+                poignancy_score,
             )
         )
 
         print(
-            f'\nid: {len(memories)}\n'
-            f'response: \"{ai_text}\"\n'
-            f'event: {event_description}\n'
-            f'poignancy: {poignancy_score}'
+            f"\nid: {len(memories)}\n"
+            f'response: "{ai_text}"\n'
+            f"event: {event_description}\n"
+            f"poignancy: {poignancy_score}"
         )
 
 

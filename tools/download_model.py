@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from sentence_transformers import SentenceTransformer
 
 model_name = "all-MiniLM-L6-v2"
